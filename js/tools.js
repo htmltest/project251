@@ -30,22 +30,111 @@ $(document).ready(function() {
     });
 
     $('.land-induction-catalogue-filter-group-title').click(function() {
-        var curGroup = $(this).parent();
-        curGroup.toggleClass('open');
-        curGroup.find('.land-induction-catalogue-filter-group-content').slideToggle(function() {
-            updateCataloguePosition();
+        if ($(window).width() < 1188) {
+            var curGroup = $(this).parent();
+            var newHTML =   '<div class="land-induction-catalogue-filter-popup">' +
+                                '<div class="land-induction-catalogue-filter-popup-bg"></div>' +
+                                '<div class="land-induction-catalogue-filter-popup-container">' +
+                                    '<div class="land-induction-catalogue-filter-popup-header">' +
+                                        '<div class="land-induction-catalogue-filter-popup-title">' + curGroup.find('.land-induction-catalogue-filter-group-title').html() + '</div>' +
+                                        '<a href="#" class="land-induction-catalogue-filter-popup-close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.3975 19.6537L5.34375 18.5999L10.9437 12.9999L5.34375 7.39994L6.3975 6.34619L11.9975 11.9462L17.5975 6.34619L18.6513 7.39994L13.0513 12.9999L18.6513 18.5999L17.5975 19.6537L11.9975 14.0537L6.3975 19.6537Z" fill="white" /></svg></a>' +
+                                    '</div>' +
+                                    '<form class="land-induction-catalogue-filter-popup-form">' +
+                                        curGroup.find('.land-induction-catalogue-filter-group-content').html() +
+                                    '</form>' +
+                                    '<div class="land-induction-catalogue-filter-popup-footer">' +
+                                        '<a href="#" class="land-induction-catalogue-filter-popup-footer-close"><svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.76917 4.73095L7.47183 5.45395L4.92567 8.00012L13 8.00012L13 9.00012L4.92567 9.00012L7.47183 11.5463L6.76917 12.2693L3 8.50012L6.76917 4.73095Z" fill="white" fill-opacity="0.5" /></svg>Отменить</a>' +
+                                        '<a href="#" class="land-induction-catalogue-filter-popup-footer-apply">Применить</a>' +
+                                    '</div>';
+            newHTML +=          '</div>' +
+                            '</div>';
+            $('body').append(newHTML);
+            $('.land-induction-catalogue-filter-popup-form input').each(function() {
+                var curInput = $(this);
+                var curName = curInput.attr('name');
+                var curValue = curInput.attr('value');
+                if (curGroup.find('.land-induction-catalogue-filter-group-content input[name="' + curName + '"][value="' + curValue + '"]').prop('checked')) {
+                    curInput.prop('checked', true);
+                }
+            });
+            var curScroll = $(window).scrollTop();
+            $('html').addClass('land-induction-catalogue-filter-popup-open');
+            $('.land-induction-wrapper').css({'top': -curScroll});
+            $('.land-induction-wrapper').data('curScroll', curScroll);
+        }
+    });
+
+    $('body').on('click', '.land-induction-catalogue-filter-popup-close, .land-induction-catalogue-filter-popup-bg, .land-induction-catalogue-filter-popup-footer-close', function(e) {
+        $('.land-induction-wrapper').css({'top': 0});
+        $('.land-induction-catalogue-filter-popup').remove();
+        $('html').removeClass('land-induction-catalogue-filter-popup-open');
+        $(window).scrollTop($('.land-induction-wrapper').data('curScroll'));
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.land-induction-catalogue-filter-popup-footer-apply', function(e) {
+        $('.land-induction-catalogue-filter-popup-form input').each(function() {
+            var curInput = $(this);
+            var curName = curInput.attr('name');
+            var curValue = curInput.attr('value');
+            $('.land-induction-catalogue-filter-group-content input[name="' + curName + '"][value="' + curValue + '"]').prop('checked', curInput.prop('checked')).trigger('change');
         });
+        var curCount = $('.land-induction-catalogue-filter-group-content input:checked').length;
+        $('.land-induction-catalogue-filter-link a span').html(curCount);
+        if (curCount > 0) {
+            $('.land-induction-catalogue-filter-link a span').addClass('active');
+        } else {
+            $('.land-induction-catalogue-filter-link a span').removeClass('active');
+        }
+        updateFilterSelected();
+        $('.land-induction-wrapper').css({'top': 0});
+        $('.land-induction-catalogue-filter-popup').remove();
+        $('html').removeClass('land-induction-catalogue-filter-popup-open');
+        $(window).scrollTop($('.land-induction-wrapper').data('curScroll'));
+        e.preventDefault();
+    });
+
+    $('.land-induction-catalogue-filter-clear a').click(function(e) {
+        $('.land-induction-catalogue-filter-group-content input').prop('checked', false).trigger('change');
+        $('.land-induction-catalogue-filter-link a span').removeClass('active');
+        updateFilterSelected();
+        e.preventDefault();
+    });
+
+    $('.land-induction-catalogue-filter-submit a').click(function(e) {
+        $('.land-induction-catalogue').addClass('open');
+        e.preventDefault();
+    });
+
+    $('.land-induction-catalogue-filter-link a').click(function(e) {
+        $('.land-induction-catalogue').removeClass('open');
+        e.preventDefault();
     });
 
     var landInductionCatalogueSlider = null;
 
     $('.land-induction-catalogue-filter-item input').change(function() {
         landInductionCatalogueUpdate();
+        updateFilterSelected();
     });
 
     $('.land-induction-catalogue').each(function() {
         landInductionCatalogueUpdate();
+        updateFilterSelected();
     });
+
+    function updateFilterSelected() {
+        $('.land-induction-catalogue-filter-group').each(function() {
+            var curGroup = $(this);
+            var newHTML = '';
+            curGroup.find('.land-induction-catalogue-filter-group-content input:checked').each(function() {
+                var curInput = $(this);
+                newHTML += '<span>' + curInput.parent().find('span').html() + '</span>';
+            });
+            curGroup.find('.land-induction-catalogue-filter-group-selected').html(newHTML);
+
+        });
+    }
 
     function landInductionCatalogueUpdate() {
         $('.land-induction-catalogue-slider').each(function() {
@@ -134,8 +223,6 @@ $(document).ready(function() {
                     clickable: true
                 }
             });
-
-            window.setTimeout(function() { updateCataloguePosition(); } , 300);
         });
     }
 
@@ -152,36 +239,11 @@ $(document).ready(function() {
 
 });
 
-function updateCataloguePosition() {
-    var windowScroll = $(window).scrollTop();
-
-    $('body').append('<div id="body-test-height" style="position:fixed; left:0; top:0; right:0; bottom:0; z-index:-1"></div>');
-    var windowHeight = $('#body-test-height').height();
-    $('#body-test-height').remove();
-
-    $('.land-induction-catalogue-slider').css({'min-height': $('.land-induction-catalogue-slider-inner').outerHeight()});
-    $('.land-induction-catalogue-slider').each(function() {
-        if (windowScroll + windowHeight / 2 > $('.land-induction-catalogue').offset().top) {
-            $('.land-induction-catalogue-slider').addClass('fixed');
-            if (windowScroll + windowHeight > $('.land-induction-catalogue').offset().top + $('.land-induction-catalogue').outerHeight()) {
-                $('.land-induction-catalogue-slider-inner').css({'margin-bottom': (windowScroll + windowHeight) - ($('.land-induction-catalogue').offset().top + $('.land-induction-catalogue').outerHeight())});
-            } else {
-                $('.land-induction-catalogue-slider-inner').css({'margin-bottom': 0});
-            }
-        } else {
-            $('.land-induction-catalogue-slider').removeClass('fixed');
-            $('.land-induction-catalogue-slider-inner').css({'margin-bottom': 0});
-        }
-    });
-}
-
 $(window).on('load resize', function() {
-    updateCataloguePosition();
-    
     $('.land-induction-comfort-slider-list').each(function() {
         $('.land-induction-comfort-slider-list').css({'height': $('.land-induction-comfort-slider-item.active').height()});
     });
-    
+
     $('.land-induction-design').each(function() {
         if ($(window).width() < 1188) {
             var minHeight = 0;
@@ -315,8 +377,6 @@ $(window).on('load resize scroll', function() {
             }
         }
     });
-
-    updateCataloguePosition();
 });
 
 var isScrollTopComfort = false;
