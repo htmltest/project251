@@ -269,17 +269,17 @@ $(window).on('load resize scroll', function() {
     $('#body-test-height').remove();
 
     $('.land-induction-design').each(function() {
-        var headerSize = 120;
+        var headerSize = 20;
         if ($('header').length == 1) {
-            headerSize = 200;
+            headerSize = 169;
         }
-        var bottomOffset = 120;
+        var bottomOffset = 40;
         if ($(window).width() < 1188) {
             headerSize = 40;
             if ($('header').length == 1) {
                 headerSize = 92;
             }
-            bottomOffset = 800;
+            bottomOffset = -windowHeight / 3;
         }
         if (windowScroll >= $('.land-induction-design').offset().top - headerSize) {
             $('.land-induction-design').addClass('fixed');
@@ -394,6 +394,12 @@ function update1Digit() {
         window.clearTimeout(timerUpdate1Digit);
         timerUpdate1Digit = null;
         timerUpdate1Digit = window.setTimeout(update1Digit, 200);
+    } else {
+        curDigit = 1;
+        $('.land-induction-comfort-slider-item-1-digit').html(curDigit);
+        window.clearTimeout(timerUpdate1Digit);
+        timerUpdate1Digit = null;
+        timerUpdate1Digit = window.setTimeout(update1Digit, 200);
     }
 }
 
@@ -401,6 +407,12 @@ function update2Digits() {
     var curDigit = Number($('.land-induction-comfort-slider-item-2-digits').html()[4]);
     if (curDigit > 0) {
         curDigit--;
+        $('.land-induction-comfort-slider-item-2-digits').html('00:0' + curDigit);
+        window.clearTimeout(timerUpdate2Digits);
+        timerUpdate2Digits = null;
+        timerUpdate2Digits = window.setTimeout(update2Digits, 400);
+    } else {
+        curDigit = 7;
         $('.land-induction-comfort-slider-item-2-digits').html('00:0' + curDigit);
         window.clearTimeout(timerUpdate2Digits);
         timerUpdate2Digits = null;
@@ -428,10 +440,9 @@ function update4Img() {
 
 function update5Img() {
     $('.land-induction-comfort-slider-item-img-handle-5').animate({'margin-left': '0', 'opacity': 1}, 300, function() {
-        $('.land-induction-comfort-slider-item-img-5-steam').animate({'opacity': 1}, 500, function() {
-            $('.land-induction-comfort-slider-item-img-5-crockery-2').animate({'opacity': 1}, 500, function() {
-                $('.land-induction-comfort-slider-item-img-5-crockery-3').animate({'opacity': 1}, 500);
-            });
+        $('.land-induction-comfort-slider-item-img-5-steam').addClass('animate');
+        $('.land-induction-comfort-slider-item-img-5-crockery-2').animate({'opacity': 1}, 500, function() {
+            $('.land-induction-comfort-slider-item-img-5-crockery-3').animate({'opacity': 1}, 500);
         });
     });
 }
@@ -492,7 +503,7 @@ function landInductionAnimateComfort() {
                 $('.land-induction-comfort-slider-item-img-handle-5').stop().css({'margin-left': '-300px', 'opacity': 0});
                 $('.land-induction-comfort-slider-item-img-5-crockery-2').stop().css({'opacity': 0});
                 $('.land-induction-comfort-slider-item-img-5-crockery-3').stop().css({'opacity': 0});
-                $('.land-induction-comfort-slider-item-img-5-steam').stop().css({'opacity': 0});
+                $('.land-induction-comfort-slider-item-img-5-steam').removeClass('animate');
                 window.clearTimeout(timerUpdate5Img);
                 timerUpdate5Img = null;
                 timerUpdate5Img = window.setTimeout(update5Img, 500);

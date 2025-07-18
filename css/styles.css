@@ -15,7 +15,7 @@
 .land-induction-container {margin:0 auto; max-width:1188px; padding:0 10px; width:100%; position:relative}
 
 .land-induction-welcome {position:relative; display:flex; align-items:center; justify-content:center; height:540px; background:url(../img/land-induction-welcome.jpg) no-repeat center top; background-size:auto 540px}
-.land-induction-welcome-title {font-weight:500; font-size:60px; line-height:78px; color:#FFFFFF}
+.land-induction-welcome-title {font-weight:500; font-size:36px; line-height:1.3em; color:#FFFFFF}
 .land-induction-welcome-btn {margin:40px 0 0 0; display:flex}
 .land-induction-welcome-btn a {display:flex; align-items:center; justify-content:center; border:1px solid #C99B69; padding:0 24px; color:#C99B69; font-weight:500; font-size:16px; line-height:16px; height:43px; border-radius:4px; text-decoration:none; transition:background 0.2s, color 0.2s, border-color 0.2s; text-transform:uppercase}
 @media (min-width:1188px) {
@@ -23,9 +23,9 @@
 }
 
 @media (max-width:1187px) {
-    .land-induction-welcome {display:block; height:640px; padding:40px 0 0 0; text-align:center; background:url(../img/land-induction-welcome-mobile.png) no-repeat center bottom}
+    .land-induction-welcome {display:block; height:540px; padding:40px 0 0 0; text-align:center; background:url(../img/land-induction-welcome-mobile.jpg) no-repeat center bottom; background-size:cover}
     .land-induction-welcome::before {content:""; position:absolute; left:0; top:0; right:0; bottom:0; background:linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 45.45%)}
-    .land-induction-welcome-title {font-size:30px; line-height:36px}
+    .land-induction-welcome-title {font-size:24px; line-height:1.2em}
     .land-induction-welcome-btn {margin:20px 0 0 0; display:block}
 }
 
@@ -42,22 +42,20 @@
     .land-induction-menu {display:none}
 }
 
-.land-induction-design {margin:120px 0 0 0; height:1281px}
-.land-induction-design-container {position:relative; height:427px}
-.land-induction-design.fixed .land-induction-design-container {position:fixed; left:0; top:120px; right:0}
-.land-induction-wrapper.full .land-induction-design.fixed .land-induction-design-container {top:200px}
-.land-induction-design-item {position:absolute; left:0; top:0; right:0; height:427px; opacity:0; transition:opacity 1s}
+.land-induction-design {margin:120px 0 0 0; height:300vh}
+.land-induction-design-container {position:relative; height:100vh}
+.land-induction-design.fixed .land-induction-design-container {position:fixed; left:0; top:20px; right:0}
+.land-induction-wrapper.full .land-induction-design.fixed .land-induction-design-container {top:169px}
+.land-induction-design-item {position:absolute; left:0; top:0; right:0; opacity:0; transition:opacity 1s}
 .land-induction-design-item.active {opacity:1}
 .land-induction-design-item-title {text-align:center; font-weight:bold; font-size:36px; line-height:43px; color:#FFFFFF}
-.land-induction-design-item-text {margin:20px auto 0 auto; max-width:648px; text-align:center; font-weight:500; font-size:16px; line-height:1.5em; color:rgba(255, 255, 255, 0.7)}
+.land-induction-design-item-text {margin:20px auto 0 auto; max-width:648px; text-align:center; font-weight:500; font-size:16px; line-height:1.5em; color:#FFFFFF}
 .land-induction-design-item:nth-child(1) .land-induction-design-item-text {max-width:818px}
 
 @media (max-width:1187px) {
-    .land-induction-design {margin:40px 0 0 0; height:4050px}
+    .land-induction-design {margin:40px 0 0 0; height:900vh}
     .land-induction-design.fixed .land-induction-design-container {position:fixed; left:0; top:40px; right:0}
     .land-induction-wrapper.full .land-induction-design.fixed .land-induction-design-container {top:92px}
-    .land-induction-design-container {height:1350px}
-    .land-induction-design-item {height:1350px}
     .land-induction-design-item-title {font-size:24px; line-height:29px}
     .land-induction-design-item-text {font-size:15px; line-height:23px}
     .land-induction-design-item-text br {display:none}
@@ -128,12 +126,12 @@
 
 .land-induction-comfort {margin:120px 0 0 0}
 .land-induction-comfort-title {text-align:center; font-weight:bold; font-size:36px; line-height:43px; color:#FFFFFF}
-.land-induction-comfort-slider {position:relative; margin:40px 0 0 0; border-radius:12px; background:#131313; padding:0 0 20px 0; overflow:hidden}
+.land-induction-comfort-slider {position:relative; margin:40px 0 0 0; border-radius:12px; background:#3B3939; padding:177px 0 20px 0; overflow:hidden}
 .land-induction-comfort-slider-list {position:relative}
 @media (min-width:1188px) {
-    .land-induction-comfort-slider-list {height:350px !important}
+    .land-induction-comfort-slider-list {height:400px !important}
 }
-.land-induction-comfort-slider-item {position:absolute; left:0; top:0; right:0; opacity:0; padding:0 40px; height:350px; transition:opacity 0.5s; display:flex; align-items:flex-start; justify-content:space-between; flex-direction:row-reverse}
+.land-induction-comfort-slider-item {position:absolute; left:0; top:0; right:0; opacity:0; padding:0 40px; height:400px; transition:opacity 0.5s; display:flex; align-items:flex-start; justify-content:space-between; flex-direction:row-reverse}
 .land-induction-comfort-slider-item.active {opacity:1}
 .land-induction-comfort-slider-item-title-mobile {display:none}
 .land-induction-comfort-slider-item-img {align-self:flex-end; min-width:487px; max-width:487px; position:relative}
@@ -171,14 +169,26 @@
 .land-induction-comfort-slider-item-img-5-crockery-2 img {display:block; width:100%}
 .land-induction-comfort-slider-item-img-5-crockery-3 {position:absolute; left:0; top:0; right:0; opacity:0}
 .land-induction-comfort-slider-item-img-5-crockery-3 img {display:block; width:100%}
-.land-induction-comfort-slider-item-img-5-steam {position:absolute; left:0; top:0; right:0; opacity:0}
-.land-induction-comfort-slider-item-img-5-steam img {display:block; width:100%}
+.land-induction-comfort-slider-item-img-5-steam {position:absolute; left:0; top:0; right:0}
+.land-induction-comfort-slider-item-img-5-steam img {display:block; width:100%; position:absolute; left:0; top:0; opacity:0}
+.land-induction-comfort-slider-item-img-5-steam.animate img:nth-child(1) {animation:land-induction-comfort-slider-item-img-5-steam 2s infinite linear}
+.land-induction-comfort-slider-item-img-5-steam.animate img:nth-child(2) {animation:land-induction-comfort-slider-item-img-5-steam 2s 1s infinite linear}
+.land-induction-comfort-slider-item-img-5-steam.animate img:nth-child(3) {animation:land-induction-comfort-slider-item-img-5-steam 2s 2s infinite linear}
+@keyframes land-induction-comfort-slider-item-img-5-steam {
+    0%, 100% {
+        opacity:0;
+    }
+    50% {
+        opacity:1
+    }
+}
+
 .land-induction-comfort-slider-item-info {min-width:495px; max-width:495px; padding:30px 0 0 0}
 .land-induction-comfort-slider-item-title {font-weight:bold; font-size:24px; line-height:29px; color:#FFFFFF}
 .land-induction-comfort-slider-item-title sup {vertical-align:top; font-size:0.6em; line-height:1em; position:relative; top:4px}
-.land-induction-comfort-slider-item-text {margin:20px 0 0 0; font-weight:500; font-size:18px; line-height:27px; color:rgba(255, 255, 255, 0.7)}
+.land-induction-comfort-slider-item-text {margin:20px 0 0 0; font-weight:500; font-size:18px; line-height:27px; color:#FFFFFF}
 .land-induction-comfort-slider-item-text sup {vertical-align:top; font-size:0.6em; line-height:1em; position:relative; top:4px}
-.land-induction-comfort-slider-menu {margin:10px 35px 0 35px; display:flex}
+.land-induction-comfort-slider-menu {margin:0; display:flex; position:absolute; left:40px; top:20px; right:40px}
 .land-induction-comfort-slider-menu-item {min-width:calc(20% - 10px); max-width:calc(20% - 10px); margin:0 5px; padding:20px 0; transition:background 0.2s; border-radius:5px; cursor:pointer}
 .land-induction-comfort-slider-menu-item.active {background:#0D0D0D}
 .land-induction-comfort-slider-menu-item-icon {width:60px; margin:0 auto; position:relative}
@@ -198,7 +208,7 @@
 @media (max-width:1187px) {
     .land-induction-comfort {margin:80px 0 0 0}
     .land-induction-comfort-title {font-size:24px; line-height:29px}
-    .land-induction-comfort-slider {position:relative; padding:31.25vw 15px 0 15px; margin:30px -10px 0 -10px}
+    .land-induction-comfort-slider {position:relative; padding:31.25vw 15px 15px 15px; margin:30px -10px 0 -10px}
     .land-induction-comfort-slider-list {height:auto}
     .land-induction-comfort-slider-item {padding:0; display:block; height:auto}
     .land-induction-comfort-slider-item-title-mobile {display:block; text-align:center; font-size:20px; line-height:24px; font-weight:bold; color:#FFFFFF}
@@ -210,7 +220,7 @@
     .land-induction-comfort-slider-item-1-digit {left:212px; top:167px; width:auto; height:auto; display:block; font-size:20px; line-height:20px}
     .land-induction-comfort-slider-item-img-handle-2 {left:172px; top:184px}
     .land-induction-comfort-slider-item-2-digits {left:195px; top:119px; width:63px; height:31px; font-size:18px; line-height:20px}
-    .land-induction-comfort-slider-item-img-handle-3 {left:189px; top:219px}
+    .land-induction-comfort-slider-item-img-handle-3 {left:195px; top:210px}
     .land-induction-comfort-slider-item-img-handle-4 {left:167px; top:216px}
     .land-induction-comfort-slider-item-img-4-border {left:31px; top:14px; width:88px; height:179px; border-width:1px}
     .land-induction-comfort-slider-item-img-4-crockery {top:-30px}
@@ -302,7 +312,7 @@
 .land-induction-catalogue-filter-item label span em {font-style:normal; font-size:0.6em; line-height:1em; vertical-align:top; position:relative; top:4px}
 .land-induction-catalogue-filter-ctrl {display:none}
 .land-induction-catalogue-slider {width:376px; margin:0 auto}
-.land-induction-catalogue-slider-item {padding:0 24px 24px 24px; background:#222222; border-radius:12px}
+.land-induction-catalogue-slider-item {padding:0 24px 24px 24px; background:#3B3939; border-radius:12px}
 .land-induction-catalogue-slider-item-preview {height:260px; display:flex; align-items:center; justify-content:center}
 .land-induction-catalogue-slider-item-preview img {display:block; max-width:100%; max-height:100%}
 .land-induction-catalogue-slider-item-title {margin:-10px 0 0 0; text-align:center; color:#FFFFFF; font-weight:500; font-size:20px; line-height:30px}
@@ -311,7 +321,7 @@
 @media (min-width:1188px) {
     .land-induction-catalogue-slider-item-btn a:hover {color:#FFFFFF; border-color:#C99B69; background:#C99B69}
 }
-.land-induction-catalogue-slider-empty {padding:24px 20px; border-radius:12px; background:#222222}
+.land-induction-catalogue-slider-empty {padding:24px 20px; border-radius:12px; background:#3B3939}
 .land-induction-catalogue-slider-empty-preview {padding:0 23px 0 23px; height:260px; display:flex; align-items:center; justify-content:center}
 .land-induction-catalogue-slider-empty-preview img {display:block; max-width:100%; max-height:100%}
 .land-induction-catalogue-slider-empty-title {margin:20px 0 0 0; text-align:center; font-weight:500; font-size:16px; line-height:24px; color:#FFFFFF}
